@@ -10,8 +10,8 @@ object P08 {
     def compressRec(result: List[A], rest: List[A]): List[A] = rest match {
       case first :: second :: tail if first == second => compressRec(result, first :: tail)
       case head :: tail => compressRec(head :: result, tail)
-      case _ => result
+      case _ => reverse(result)
     }
-    reverse(compressRec(List(), list))
+    compressRec(List(), list)
   }
 }
