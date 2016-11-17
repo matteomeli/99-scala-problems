@@ -1,14 +1,12 @@
 package nnsp
 
-import scala.annotation.tailrec
-
 object P05 {
   def reverse[A](list: List[A]): List[A] = {
-    @tailrec
-    def reverseRec(result: List[A], current: List[A]): List[A] = current match {
-      case head :: tail => reverseRec(head :: result, tail)
+    @annotation.tailrec
+    def loop(l: List[A], result: List[A]): List[A] = l match {
+      case head :: tail => loop(tail, head :: result)
       case _ => result
     }
-    reverseRec(List(), list)
+    loop(list, List())
   }
 }

@@ -1,14 +1,12 @@
 package nnsp
 
-import scala.annotation.tailrec
-
 object P04 {
   def length[A](list: List[A]): Int = {
-    @tailrec
-    def lengthRec(acc: Int, current: List[A]): Int = current match {
-      case _ :: tail => lengthRec(acc + 1, tail)
+    @annotation.tailrec
+    def loop(l: List[A], acc: Int): Int = l match {
+      case _ :: tail => loop(tail, acc + 1)
       case _ => acc
     }
-    lengthRec(0, list)
+    loop(list, 0)
   }
 }

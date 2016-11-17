@@ -1,16 +1,14 @@
 package nnsp
 
-import scala.annotation.tailrec
-
 object P07 {
   def flatten(list: List[Any]): List[Any] = {
-    @tailrec
-    def flattenRec(result: List[Any], current: List[Any]): List[Any] = current match {
-      case (head : List[_]) :: Nil => flattenRec(result, head)
-      case (head : List[_]) :: tail => flattenRec(result ::: head, tail)
-      case head :: tail => flattenRec(result ::: List(head), tail)
+    @annotation.tailrec
+    def loop(l: List[Any], result: List[Any]): List[Any] = l match {
+      case (head : List[_]) :: Nil => loop(head, result)
+      case (head : List[_]) :: tail => loop(tail, result ::: head)
+      case head :: tail => loop(tail, result ::: List(head))
       case _ => result
     }
-    flattenRec(List(), list)
+    loop(list, List())
   }
 }
