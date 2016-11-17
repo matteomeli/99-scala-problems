@@ -3,6 +3,7 @@ package nnsp
 import P05._
 
 object P09 {
+  // TODO: Find a solution without using reverse
   def pack[A](list: List[A]): List[List[A]] = {
     @annotation.tailrec
     def loop(l: List[A], result: List[List[A]]): List[List[A]] = (l, result) match {
