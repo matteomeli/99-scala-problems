@@ -1,6 +1,6 @@
-package nnsp
+package nnsp.problem2
 
-object P02 {
+object Solution {
   @annotation.tailrec
   def penultimate[A](list: List[A]): A = list match {
     case lastButOne :: _ :: Nil => lastButOne

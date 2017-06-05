@@ -1,9 +1,9 @@
-package nnsp
+package nnsp.problem10
 
-import P05._
-import P09._
+import nnsp.problem5.Solution._
+import nnsp.problem9.Solution._
 
-object P10 {
+object Solution {
   // TODO: Find a solution without using reverse
   def encode[A](list: List[A]): List[(Int, A)] = {
     @annotation.tailrec

@@ -1,6 +1,6 @@
-package nnsp
+package nnsp.problem1
 
-object P01 {
+object Solution {
   @annotation.tailrec
   def last[A](list: List[A]): A = list match {
     case head :: Nil => head

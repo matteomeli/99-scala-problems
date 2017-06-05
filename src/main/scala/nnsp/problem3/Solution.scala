@@ -1,6 +1,6 @@
-package nnsp
+package nnsp.problem3
 
-object P03 {
+object Solution {
   @annotation.tailrec
   def nth[A](n: Int, list: List[A]): Option[A] = (n, list) match {
     case (0, head :: _) => Some(head)

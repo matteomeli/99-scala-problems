@@ -1,8 +1,8 @@
-package nnsp
+package nnsp.problem9
 
-import P05._
+import nnsp.problem5.Solution._
 
-object P09 {
+object Solution {
   // TODO: Find a solution without using reverse
   def pack[A](list: List[A]): List[List[A]] = {
     @annotation.tailrec

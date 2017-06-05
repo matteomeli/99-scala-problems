@@ -1,6 +1,6 @@
-package nnsp
+package nnsp.problem7
 
-object P07 {
+object Solution {
   def flatten(list: List[Any]): List[Any] = {
     @annotation.tailrec
     def loop(l: List[Any], result: List[Any]): List[Any] = l match {

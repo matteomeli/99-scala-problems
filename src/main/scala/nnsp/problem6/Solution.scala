@@ -1,7 +1,7 @@
-package nnsp
+package nnsp.problem6
 
-import P05._
+import nnsp.problem5.Solution._
 
-object P06 {
+object Solution {
   def isPalindrome[A](list: List[A]): Boolean = list == reverse(list)
 }

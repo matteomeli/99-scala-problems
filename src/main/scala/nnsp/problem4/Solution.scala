@@ -1,6 +1,6 @@
-package nnsp
+package nnsp.problem4
 
-object P04 {
+object Solution {
   def length[A](list: List[A]): Int = {
     @annotation.tailrec
     def loop(l: List[A], acc: Int): Int = l match {
