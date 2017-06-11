@@ -21,7 +21,7 @@ class ListTest extends FlatSpec with Matchers {
     lastOption(List()) should be(None)
   }
 
-    "The penultimate function" should "return the penultimate element of a list with at least two elements" in {
+  "The penultimate function" should "return the penultimate element of a list with at least two elements" in {
     penultimate(List(1, 1, 2, 3, 5, 8)) should be (5)
     penultimate(List(1, 2)) should be (1)
   }
@@ -160,5 +160,35 @@ class ListTest extends FlatSpec with Matchers {
 
   "Function encodeDirect" should "return the run-length encoding of a list" in {
     encodeDirect((List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))) should be (List((4,'a), (1,'b), (2,'c), (2,'a), (1,'d), (4,'e)))
+  }
+
+  "Function duplicate" should "duplicate each element of a list" in {
+    duplicate(List('a, 'b, 'c, 'c, 'd)) should be (List('a, 'a, 'b, 'b, 'c, 'c, 'c, 'c, 'd, 'd))
+  }
+
+  "Function duplicateN" should "duplicate each element of a list an N number of times" in {
+    duplicate(List('a, 'b, 'c, 'c, 'd)) should be (List('a, 'a, 'b, 'b, 'c, 'c, 'c, 'c, 'd, 'd))
+  }
+
+  "Function dropEveryN" should "drop every element at nth position of a list" in {
+     dropEveryN(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k)) should be (List('a, 'b, 'd, 'e, 'g, 'h, 'j, 'k))
+  }
+
+  "Function split" should "split a list in two at the specified index" in {
+    split(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k)) should be ((List('a, 'b, 'c), List('d, 'e, 'f, 'g, 'h, 'i, 'j, 'k)))
+  }
+
+  "Function slice" should "split a slice from a list from the specified indexes (final excluded)" in {
+    slice(3, 7, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k)) should be (List('d, 'e, 'f, 'g))
+  }
+
+  "Function rotate" should "rotate a list n places to the left" in {
+    rotate(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k)) should be (List('d, 'e, 'f, 'g, 'h, 'i, 'j, 'k, 'a, 'b, 'c))
+    rotate(-2, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k)) should be (List('j, 'k, 'a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i))
+  }
+
+  "Function removeAt" should "remove elementh at nth position from a list and return the list and the element in a tuple" in {
+    removeAt(1, List('a, 'b, 'c, 'd)) should be ((List('a, 'c, 'd), Some('b)))
+    removeAt(4, List('a, 'b, 'c, 'd)) should be ((List('a, 'b, 'c, 'd), None))
   }
 }

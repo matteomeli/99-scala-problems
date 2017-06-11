@@ -139,11 +139,72 @@ object ListSolutions {
 
   // Problem 13
   def encodeDirect[A](ls: List[A]): List[(Int, A)] = {
+    @annotation.tailrec
     def go(rem: List[A], acc: List[(Int, A)]): List[(Int, A)] = rem match {
       case Nil => reverse(acc)
       case x :: xs if acc.isEmpty || x != acc.head._2 => go(xs, (1, x) :: acc)
       case x :: xs => go(xs, (acc.head._1 + 1, x) :: acc.tail)
     }
     go(ls, List())
+  }
+
+  // Problem 14
+  def duplicate1[A](ls: List[A]): List[A] = {
+    @annotation.tailrec
+    def go(rem: List[A], acc: List[A]): List[A] = rem match {
+      case Nil => reverse(acc)
+      case x :: xs => go(xs, x :: x :: acc)
+    }
+    go(ls, List())
+  }
+
+  def duplicate2[A](ls: List[A]): List[A] = ls flatMap { List.fill(2)(_) }
+
+  def duplicate[A](ls: List[A]): List[A] = duplicate2(ls)
+
+  // Problem 15
+  def duplicateN[A](n: Int, ls: List[A]): List[A] = ls flatMap { List.fill(n)(_) }
+
+  // Problem 16
+  def dropEveryN[A](n: Int, ls: List[A]): List[A] = {
+    @annotation.tailrec
+    def go(i: Int, rem: List[A], acc: List[A]): List[A] = rem match {
+      case Nil => reverse(acc)
+      case x :: xs if i == 0 => go(n - 1, xs, acc)
+      case x :: xs => go(i - 1, xs, x :: acc)
+    }
+    go(n - 1, ls, List())
+  }
+
+  def dropEveryN1[A](n: Int, ls: List[A]): List[A] = ls.zipWithIndex filter { _._2 + 1 % n != 0 } map { _._1 }
+
+  // Problem 17
+  def split[A](n: Int, ls: List[A]): (List[A], List[A]) = {
+    def go(i: Int, curr: List[A], prefix: List[A]): (List[A], List[A]) = 
+      if (i == 0) (reverse(prefix), curr)  
+      else curr match {
+        case Nil => (reverse(prefix), List())
+        case x :: xs => go(i - 1, xs, x :: prefix)
+      }
+    go(n, ls, List())
+  }
+
+  def split1[A](n: Int, ls: List[A]): (List[A], List[A]) = (ls.take(n), ls.drop(n))
+
+  // Problem 18
+  def slice[A](i: Int, k: Int, ls: List[A]): List[A] = if (k <= i) List() else { val s = i max 0; ls.drop(s).take(k - s) }
+
+  // Problem 19
+  def rotate[A](n: Int, ls: List[A]): List[A] = {
+    val nBounded = if (ls.isEmpty) 0 else if (n < 0) n + ls.length else n % ls.length
+    ls.drop(nBounded) ++ ls.take(nBounded)
+  }
+
+  // Problem 20
+  def removeAt[A](n: Int, ls: List[A]): (List[A], Option[A]) = if (n < 0) (ls, None) else {
+    (ls.take(n), ls.drop(n)) match {
+      case (p, Nil) => (p, None)
+      case (p, x :: xs) => (p ++ xs, Some(x))
+    }
   }
 }
