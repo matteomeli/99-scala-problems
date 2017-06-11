@@ -207,4 +207,13 @@ object ListSolutions {
       case (p, x :: xs) => (p ++ xs, Some(x))
     }
   }
+
+  // Problem 21
+  def insertAt[A](a: A, n: Int, ls: List[A]): List[A] = {
+    val nBounded = if (n < 0) 0 else n min ls.length
+    ls.take(nBounded) ++ (a :: ls.drop(nBounded))
+  }
+
+  def insertAt1[A](a: A, n: Int, ls: List[A]): List[A] =
+    ls.splitAt(n) match { case (pre, post) => pre ::: a :: post }
 }

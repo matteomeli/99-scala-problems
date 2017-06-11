@@ -187,8 +187,12 @@ class ListTest extends FlatSpec with Matchers {
     rotate(-2, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k)) should be (List('j, 'k, 'a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i))
   }
 
-  "Function removeAt" should "remove elementh at nth position from a list and return the list and the element in a tuple" in {
+  "Function removeAt" should "remove element at nth position from a list and return the list and the element in a tuple" in {
     removeAt(1, List('a, 'b, 'c, 'd)) should be ((List('a, 'c, 'd), Some('b)))
     removeAt(4, List('a, 'b, 'c, 'd)) should be ((List('a, 'b, 'c, 'd), None))
+  }
+
+  "Function insertAt" should "insert element at nth position in a list" in {
+    insertAt('new, 1, List('a, 'b, 'c, 'd)) should be (List('a, 'new, 'b, 'c, 'd))
   }
 }
